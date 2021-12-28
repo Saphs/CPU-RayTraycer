@@ -32,9 +32,6 @@ bool CSphere::isIntersecting(CLine line) {
  */
 Vec CSphere::firstIntersectionPoint(CLine line) {
     // See https://drive.google.com/file/d/0B8g97JkuSSBwUENiWTJXeGtTOHFmSm51UC01YWtCZw/view Page 27
-
-    const double EPSILON = 0.001;
-
     const Vec o_c = m_pos - line.getP1();
     const double b = dot(o_c, line.getDirection());
     const double det = b * b - dot(o_c, o_c) + m_radius * m_radius;

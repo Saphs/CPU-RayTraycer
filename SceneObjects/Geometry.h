@@ -12,6 +12,8 @@
 enum Refl_t {DIFF, SPEC, REFR};
 
 class Geometry {
+protected:
+    constexpr static float EPSILON = 0.001;
 public:
     virtual bool isIntersecting(CLine line) = 0;
     virtual Vec firstIntersectionPoint(CLine line) = 0;
