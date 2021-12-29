@@ -25,7 +25,7 @@ const Vec &Disk::getNormal() const {
 }
 
 bool Disk::isIntersecting(CLine line) {
-    float denom = dot(normalize(m_normal), normalize(line.getDirection()));
+    float denom = dot(m_normal, line.getDirection());
     if (denom > EPSILON || denom < -EPSILON) {
         float t = dot( m_p0 - line.getP1() , m_normal) / denom;
         if (t >= EPSILON) {
@@ -43,7 +43,7 @@ bool Disk::isIntersecting(CLine line) {
 Vec Disk::firstIntersectionPoint(CLine line) {
     // https://www.scratchapixel.com/lessons/3d-basic-rendering/minimal-ray-tracer-rendering-simple-shapes/ray-plane-and-ray-disk-intersection
     // assuming vectors are all normalized
-    float denom = dot(normalize(m_normal), normalize(line.getDirection()));
+    float denom = dot(m_normal, line.getDirection());
     if (denom > EPSILON || denom < -EPSILON) {
         Vec p0l0 = m_p0 - line.getP1();
         float t = dot(p0l0, m_normal) / denom;

@@ -20,7 +20,7 @@ public:
 
     CLine() {
         m_p1 = Vec();
-        m_direction = Vec();
+        m_direction = normalize(Vec());
     }
 
     CLine(Vec p, Vec dir) {
