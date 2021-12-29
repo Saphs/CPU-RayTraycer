@@ -213,7 +213,8 @@ int main() {
     const float pixel_height_2 = pixel_height / 2;
     const float sub_off_w = pixel_width / 4;
     const float sub_off_h = pixel_height / 4;
-
+    Ray r;
+    Color rad, pixel;
     /** Cast h * w visual rays into the scene */
     std::array<Vec, 5> aa_sub_pixels;
     const float d1_aa_pixel_cnt = 1.0f / aa_sub_pixels.size();
@@ -230,12 +231,12 @@ int main() {
             aa_sub_pixels[4] = aa_sub_pixels[0] + Vec( sub_off_w, -sub_off_h, 0);
 
             /** Accumulate pixel, with n samples per pixel into one correctly lit pixel */
-            Color pixel;
+            pixel = BLACK;
             for (int j = 0; j < c.samples_per_pixel; j++) {
                 /** Accumulate 5 sub-pixel samples into one pixel measurement (Anti-Aliasing) */
-                Color rad;
+                rad = BLACK;
                 for (auto v : aa_sub_pixels) {
-                    Ray r = Ray(v, v - observer.position);
+                    r = Ray(v, v - observer.position);
                     rad = rad + radiance(r, 0) * d1_aa_pixel_cnt;
                 }
                 pixel = pixel + rad * d1_spp;
