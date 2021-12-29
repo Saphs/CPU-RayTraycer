@@ -17,7 +17,7 @@ CSphere::CSphere(Vec pos, float radius, Color color, Refl_t refl) {
     m_refl = refl;
 }
 
-bool CSphere::isIntersecting(CLine line) {
+bool CSphere::isIntersecting(CLine &line) {
     Vec o_s_dist = sub(line.getP1(), m_pos);
     double delta = pow(dot(line.getDirection(), o_s_dist), 2) - (pow(length(o_s_dist), 2) - pow(m_radius, 2));
     return delta >= 0;
@@ -30,7 +30,7 @@ bool CSphere::isIntersecting(CLine line) {
  *  - Two intersections:    returns both intersection pints as Vec where the first value holds -b + delta and the
  *                          value holds -b - delta.
  */
-Vec CSphere::firstIntersectionPoint(CLine line) {
+Vec CSphere::firstIntersectionPoint(CLine &line) {
     // See https://drive.google.com/file/d/0B8g97JkuSSBwUENiWTJXeGtTOHFmSm51UC01YWtCZw/view Page 27
     const Vec o_c = m_pos - line.getP1();
     const double b = dot(o_c, line.getDirection());

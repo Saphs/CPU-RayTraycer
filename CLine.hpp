@@ -23,7 +23,7 @@ public:
         m_direction = normalize(Vec());
     }
 
-    CLine(Vec p, Vec dir) {
+    CLine(const Vec& p, const Vec& dir) {
         m_p1 = p;
         m_direction = normalize(dir);
     }

@@ -14,8 +14,8 @@ public:
     CSphere();
     CSphere(Vec pos, float radius, Color color, Refl_t refl);
 
-    bool isIntersecting(CLine line) override;
-    Vec firstIntersectionPoint(CLine line) override;
+    bool isIntersecting(CLine &line) override;
+    Vec firstIntersectionPoint(CLine &line) override;
     Vec getNormalAt(const Vec& intersection_point) override;
     Color getMatColor() override;
 

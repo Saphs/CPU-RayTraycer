@@ -20,7 +20,7 @@ Mesh::Mesh(std::vector<CTriangle> triangles, Color color, std::string name) {
     m_name = name;
 }
 
-bool Mesh::isIntersecting(CLine line) {
+bool Mesh::isIntersecting(CLine &line) {
     bool isIntersecting = false;
     for ( auto &t : m_triangles) {
         Vec tmp;
@@ -31,7 +31,7 @@ bool Mesh::isIntersecting(CLine line) {
     return isIntersecting;
 }
 
-Vec Mesh::firstIntersectionPoint(CLine line) {
+Vec Mesh::firstIntersectionPoint(CLine &line) {
     std::vector<Vec> intersections;
     for ( auto &t : m_triangles) {
         Vec tmp;

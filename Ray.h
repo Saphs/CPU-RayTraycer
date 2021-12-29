@@ -21,7 +21,7 @@ class Ray {
 public:
 
     Ray();
-    Ray(Vec origin, Vec direction);
+    Ray(const Vec &origin, const Vec &direction);
 
     bool intersectWorld(Geometry** world, const int& size);
     [[nodiscard]] bool hasIntersections() const;

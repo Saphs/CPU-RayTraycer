@@ -15,8 +15,8 @@ class Geometry {
 protected:
     constexpr static float EPSILON = 0.001;
 public:
-    virtual bool isIntersecting(CLine line) = 0;
-    virtual Vec firstIntersectionPoint(CLine line) = 0;
+    virtual bool isIntersecting(CLine &line) = 0;
+    virtual Vec firstIntersectionPoint(CLine &line) = 0;
     virtual Vec getNormalAt(const Vec& intersection_point) = 0;
     virtual Color getMatColor() = 0;
 

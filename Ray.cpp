@@ -10,7 +10,7 @@ Ray::Ray() {
     m_line = CLine();
 }
 
-Ray::Ray(Vec origin, Vec direction) {
+Ray::Ray(const Vec &origin, const Vec &direction) {
 
     m_line = CLine(origin, direction);
     m_origin = origin;
