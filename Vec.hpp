@@ -24,35 +24,11 @@ public:
     }
 };
 
-[[nodiscard]] inline Vec add(const Vec &a, const Vec &b) {
-    return {
-            a.m_x + b.m_x,
-            a.m_y + b.m_y,
-            a.m_z + b.m_z
-    };
-}
-
-[[nodiscard]] inline Vec sub(const Vec &a, const Vec &b) {
-    return {
-            a.m_x - b.m_x,
-            a.m_y - b.m_y,
-            a.m_z - b.m_z
-    };
-}
-
 [[nodiscard]] inline Vec scalarMultiply(const Vec &a, const float& x) {
     return {
             a.m_x * x,
             a.m_y * x,
             a.m_z * x
-    };
-}
-
-[[nodiscard]] inline Vec scalarDivide(const Vec &a, const float& x) {
-    return {
-            a.m_x / x,
-            a.m_y / x,
-            a.m_z / x
     };
 }
 
@@ -72,6 +48,7 @@ public:
     float l2 = a.m_x * a.m_x + a.m_y * a.m_y + a.m_z * a.m_z;
     return (l2 != 1) ? sqrt(l2): 1;
 }
+
 [[nodiscard]] inline float length2(const Vec &a) {
     return a.m_x * a.m_x + a.m_y * a.m_y + a.m_z * a.m_z;
 }
@@ -98,11 +75,19 @@ public:
 }
 
 [[nodiscard]] inline Vec operator+ (const Vec &a, const Vec &b) {
-    return add(a, b);
+    return {
+            a.m_x + b.m_x,
+            a.m_y + b.m_y,
+            a.m_z + b.m_z
+    };
 }
 
 [[nodiscard]] inline Vec operator- (const Vec &a, const Vec &b) {
-    return sub(a, b);
+    return {
+            a.m_x - b.m_x,
+            a.m_y - b.m_y,
+            a.m_z - b.m_z
+    };
 }
 
 [[nodiscard]] inline Vec operator* (const float& a, const Vec &b) {

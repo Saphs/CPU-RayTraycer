@@ -29,7 +29,7 @@ public:
     }
 
     [[nodiscard]] Vec pointAt(double t) const {
-        return add(m_p1, scalarMultiply(m_direction, static_cast<float>(t)));
+        return m_p1 + m_direction * static_cast<float>(t);
     }
 
     [[nodiscard]] Vec const &getP1() const {

@@ -50,20 +50,20 @@ Vec Mesh::getNormalAt(const Vec &intersection_point) {
         Vec B = triangle.m_p2;
         Vec C = triangle.m_p3;
         Vec P = intersection_point;
-        Vec a_c = sub(C, A);
-        Vec a_b = sub(B, A);
+        Vec a_c = C - A;
+        Vec a_b = B - A;
         float a_big_triangle = (1 / 2) * length(cross(a_c, a_b));
 
-        Vec a_p = sub(P, A);
+        Vec a_p = P - A;
         //CVector a_b = sub(B, A);
         float a_abp_triangle = (1 / 2) * length(cross(a_p, a_b));
 
-        Vec b_p = sub(P, B);
-        Vec b_c = sub(C, B);
+        Vec b_p = P - B;
+        Vec b_c = C - B;
         float a_bcp_triangle = (1 / 2) * length(cross(b_p, b_c));
 
-        Vec c_p = sub(P, C);
-        Vec c_a = sub(A, C);
+        Vec c_p = P - C;
+        Vec c_a = A - C;
         float a_cap_triangle = (1 / 2) * length(cross(c_p, c_a));
 
         if (a_abp_triangle + a_bcp_triangle + a_cap_triangle - a_big_triangle <= 0.00001) {

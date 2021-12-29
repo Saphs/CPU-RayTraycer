@@ -40,7 +40,7 @@ bool CSphere::isIntersectingAt(CLine &line, Vec *firstIntersection) {
 }
 
 Vec CSphere::getNormalAt(const Vec& intersection_point) {
-    Vec sphere_normal = normalize(sub(intersection_point, m_pos));
+    Vec sphere_normal = normalize(intersection_point - m_pos);
     return sphere_normal;
 }
 
