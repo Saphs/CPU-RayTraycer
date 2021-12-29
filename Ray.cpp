@@ -13,26 +13,22 @@ Ray::Ray() {
 Ray::Ray(const Vec &origin, const Vec &direction) {
 
     m_line = CLine(origin, direction);
-    m_origin = origin;
-    auto* tmp = new Vec();
-    (*tmp) = m_line.pointAt(MAX_CASTING_DISTANCE);
-    m_end = tmp;
-    m_length = length((*m_end) - m_origin);
-    delete tmp;
+    m_end = m_line.pointAt(MAX_CASTING_DISTANCE);
+    m_length = length(m_end - getOrigin());
 }
 
 std::string Ray::toString() const {
     std::stringstream ss;
-    ss << m_origin.toString() << "->" << m_end->toString() << " m_length: " << m_length << std::endl;
+   // ss << getOrigin().toString() << "->" << m_end.toString() << " m_length: " << m_length << std::endl;
     return ss.str();
 }
 
 const Vec &Ray::getOrigin() const {
-    return m_origin;
+    return m_line.getP1();
 }
 
 const Vec* Ray::getEnd() const {
-    return m_end;
+    return &m_end;
 }
 
 const float &Ray::getLength() const {
@@ -47,19 +43,21 @@ const CLine &Ray::getLine() const {
     return m_line;
 }
 
-const short &Ray::getIntersectionIdx() const {
+const int & Ray::getIntersectionIdx() const {
     return m_intersection_idx;
 }
 
 bool Ray::intersectWorld(Geometry** world, const int& size) {
     if (!m_hasIntersected) {
         m_hasIntersected = true;
-        for ( short i = 0; i < (short) size; i++ ) {
+        float distance;
+        Vec intersection_point;
+        for ( int i = 0; i < size; i++ ) {
             if (world[i]->isIntersecting(m_line)) {
-                Vec intersection_point = world[i]->firstIntersectionPoint(m_line);
-                float distance = length(intersection_point - m_origin);
+                intersection_point = world[i]->firstIntersectionPoint(m_line);
+                distance = length(intersection_point -getOrigin());
                 if (distance < m_length) {
-                    (*m_end) = intersection_point;
+                    m_end = intersection_point;
                     m_length = distance;
                     m_intersection_idx = i;
                 }

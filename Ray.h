@@ -26,8 +26,7 @@ public:
     bool intersectWorld(Geometry** world, const int& size);
     [[nodiscard]] bool hasIntersections() const;
 
-    [[nodiscard]] const short &getIntersectionIdx() const;
-
+    [[nodiscard]] const int & getIntersectionIdx() const;
 
     [[nodiscard]] const CLine &getLine() const;
     [[nodiscard]] const Vec &getOrigin() const;
@@ -39,11 +38,10 @@ public:
 
 private:
     bool m_hasIntersected = false;
-    short m_intersection_idx = -1;
+    int m_intersection_idx = -1;
     float m_length;
     CLine m_line;
-    Vec m_origin;
-    Vec* m_end;
+    Vec m_end;
 };
 
 
