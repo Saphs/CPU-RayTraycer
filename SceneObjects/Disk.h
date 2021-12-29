@@ -17,15 +17,13 @@ public:
     [[nodiscard]] const Vec &getP0() const;
     [[nodiscard]] const Vec &getNormal() const;
 
-    bool isIntersecting(CLine &line) override;
-    Vec firstIntersectionPoint(CLine &line) override;
+    bool isIntersectingAt(CLine &line, Vec *firstIntersection) override;
     Vec getNormalAt(const Vec &intersection_point) override;
     Color getMatColor() override;
 
 private:
     Vec m_p0;
     Vec m_normal;
-    float m_radius;
     float m_radius2;
     Color m_color;
 };

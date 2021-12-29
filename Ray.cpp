@@ -53,8 +53,8 @@ bool Ray::intersectWorld(Geometry** world, const int& size) {
         float distance;
         Vec intersection_point;
         for ( int i = 0; i < size; i++ ) {
-            if (world[i]->isIntersecting(m_line)) {
-                intersection_point = world[i]->firstIntersectionPoint(m_line);
+            if (world[i]->isIntersectingAt(m_line, &intersection_point)) {
+                //intersection_point = world[i]->firstIntersectionPoint(m_line);
                 distance = length(intersection_point -getOrigin());
                 if (distance < m_length) {
                     m_end = intersection_point;

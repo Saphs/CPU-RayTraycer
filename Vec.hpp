@@ -72,6 +72,9 @@ public:
     float l2 = a.m_x * a.m_x + a.m_y * a.m_y + a.m_z * a.m_z;
     return (l2 != 1) ? sqrt(l2): 1;
 }
+[[nodiscard]] inline float length2(const Vec &a) {
+    return a.m_x * a.m_x + a.m_y * a.m_y + a.m_z * a.m_z;
+}
 
 [[nodiscard]] inline Vec normalize(const Vec &a){
     float l = length(a);

@@ -20,43 +20,27 @@ Mesh::Mesh(std::vector<CTriangle> triangles, Color color, std::string name) {
     m_name = name;
 }
 
-bool Mesh::isIntersecting(CLine &line) {
-    bool isIntersecting = false;
-    for ( auto &t : m_triangles) {
-        Vec tmp;
-        if (t.RayIntersectsTriangle(line, tmp)) {
-            return true;
-        }
-    }
-    return isIntersecting;
-}
-
-Vec Mesh::firstIntersectionPoint(CLine &line) {
+bool Mesh::isIntersectingAt(CLine &line, Vec *firstIntersection) {
     std::vector<Vec> intersections;
     for ( auto &t : m_triangles) {
         Vec tmp;
         if (t.RayIntersectsTriangle(line, tmp)) {
-            intersections.push_back(tmp);
+           intersections.push_back(tmp);
         }
     }
+    if ( intersections.empty() )
+         return false;
 
-
-    std::pair<float, Vec> min;
-    bool isFirst = true;
+    float minDistance = std::numeric_limits<float>::max();
     for ( auto &intersection : intersections) {
         //std::cout << ray.m_line.m_p1.toString() << std::endl;
-        float distance = length(sub(intersection, line.getP1()));
-        if (isFirst) {
-            min.first = distance;
-            min.second = intersection;
-            isFirst = false;
-        } else if (distance < min.first) {
-            min.first = distance;
-            min.second = intersection;
+        float distance = length2(intersection - line.getP1());
+        if (distance < minDistance) {
+            minDistance = distance;
+             *firstIntersection = intersection;
         }
     }
-
-    return min.second; // ToDo: This is (-100000,-100000,-100000) if no intersection was found, which is a horrible value.
+    return true;
 }
 
 Vec Mesh::getNormalAt(const Vec &intersection_point) {

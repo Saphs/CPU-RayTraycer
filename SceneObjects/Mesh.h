@@ -16,8 +16,7 @@ public:
     Mesh(std::vector<CTriangle> triangles, Color color);
     Mesh(std::vector<CTriangle> triangles, Color color, std::string name);
 
-    bool isIntersecting(CLine &line) override;
-    Vec firstIntersectionPoint(CLine &line) override;
+    bool isIntersectingAt(CLine &line, Vec *firstIntersection) override;
     Vec getNormalAt(const Vec &intersection_point) override;
     Color getMatColor() override;
     std::vector<CTriangle> m_triangles;

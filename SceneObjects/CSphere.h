@@ -10,17 +10,16 @@
 #include "Geometry.h"
 
 class CSphere : public Geometry {
+    float m_radius2;
 public:
     CSphere();
     CSphere(Vec pos, float radius, Color color, Refl_t refl);
 
-    bool isIntersecting(CLine &line) override;
-    Vec firstIntersectionPoint(CLine &line) override;
+    bool isIntersectingAt(CLine &line, Vec *firstIntersection) override;
     Vec getNormalAt(const Vec& intersection_point) override;
     Color getMatColor() override;
 
     Vec m_pos;
-    float m_radius;
     Color m_color;
 };
 
