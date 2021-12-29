@@ -12,6 +12,8 @@
 /** Simple Vector class to avoid complex libraries */
 class Vec {
 public:
+    float m_x, m_y, m_z;
+
     Vec(): m_x(-100000), m_y(-100000), m_z(-100000){}
     Vec(float x, float y, float z): m_x(x), m_y(y), m_z(z){}
 
@@ -20,8 +22,6 @@ public:
     [[nodiscard]] std::string toString() const {
         return "(" + std::to_string(m_x) + "," + std::to_string(m_y) + "," + std::to_string(m_z) + ")";
     }
-
-    float m_x, m_y, m_z;
 };
 
 [[nodiscard]] inline Vec add(const Vec &a, const Vec &b) {
