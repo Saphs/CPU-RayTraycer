@@ -20,16 +20,16 @@ public:
 
     CLine() {
         m_p1 = Vec();
-        m_direction = Vec();
+        m_direction = normalize(Vec());
     }
 
-    CLine(Vec p, Vec dir) {
+    CLine(const Vec& p, const Vec& dir) {
         m_p1 = p;
         m_direction = normalize(dir);
     }
 
     [[nodiscard]] Vec pointAt(double t) const {
-        return add(m_p1, scalarMultiply(m_direction, t));
+        return m_p1 + m_direction * static_cast<float>(t);
     }
 
     [[nodiscard]] Vec const &getP1() const {

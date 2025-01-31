@@ -12,6 +12,8 @@
 /** Simple Vector class to avoid complex libraries */
 class Vec {
 public:
+    float m_x, m_y, m_z;
+
     Vec(): m_x(-100000), m_y(-100000), m_z(-100000){}
     Vec(float x, float y, float z): m_x(x), m_y(y), m_z(z){}
 
@@ -20,39 +22,13 @@ public:
     [[nodiscard]] std::string toString() const {
         return "(" + std::to_string(m_x) + "," + std::to_string(m_y) + "," + std::to_string(m_z) + ")";
     }
-
-    float m_x, m_y, m_z;
 };
-
-[[nodiscard]] inline Vec add(const Vec &a, const Vec &b) {
-    return {
-            a.m_x + b.m_x,
-            a.m_y + b.m_y,
-            a.m_z + b.m_z
-    };
-}
-
-[[nodiscard]] inline Vec sub(const Vec &a, const Vec &b) {
-    return {
-            a.m_x - b.m_x,
-            a.m_y - b.m_y,
-            a.m_z - b.m_z
-    };
-}
 
 [[nodiscard]] inline Vec scalarMultiply(const Vec &a, const float& x) {
     return {
             a.m_x * x,
             a.m_y * x,
             a.m_z * x
-    };
-}
-
-[[nodiscard]] inline Vec scalarDivide(const Vec &a, const float& x) {
-    return {
-            a.m_x / x,
-            a.m_y / x,
-            a.m_z / x
     };
 }
 
@@ -71,6 +47,10 @@ public:
 [[nodiscard]] inline float length(const Vec &a) {
     float l2 = a.m_x * a.m_x + a.m_y * a.m_y + a.m_z * a.m_z;
     return (l2 != 1) ? sqrt(l2): 1;
+}
+
+[[nodiscard]] inline float length2(const Vec &a) {
+    return a.m_x * a.m_x + a.m_y * a.m_y + a.m_z * a.m_z;
 }
 
 [[nodiscard]] inline Vec normalize(const Vec &a){
@@ -95,11 +75,19 @@ public:
 }
 
 [[nodiscard]] inline Vec operator+ (const Vec &a, const Vec &b) {
-    return add(a, b);
+    return {
+            a.m_x + b.m_x,
+            a.m_y + b.m_y,
+            a.m_z + b.m_z
+    };
 }
 
 [[nodiscard]] inline Vec operator- (const Vec &a, const Vec &b) {
-    return sub(a, b);
+    return {
+            a.m_x - b.m_x,
+            a.m_y - b.m_y,
+            a.m_z - b.m_z
+    };
 }
 
 [[nodiscard]] inline Vec operator* (const float& a, const Vec &b) {

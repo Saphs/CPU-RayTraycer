@@ -20,7 +20,7 @@ public:
     Color operator+(const Color& c) const;
     Color operator*(const float& x) const;
     Color operator*(const double& x) const;
-    Color mult(const Color& x) const;
+    [[nodiscard]] Color mult(const Color& x) const;
 
     [[nodiscard]] double getDoubleR() const;
     [[nodiscard]] double getDoubleG() const;

@@ -120,7 +120,7 @@ void printProgress(const std::chrono::system_clock::time_point &t_start, const i
     std::cout << "avgRayTime: " << avgRayTime << "ms"<< std::endl;
 }
 #elif _WIN64
-void printProgress(const std::chrono::time_point<std::chrono::steady_clock> &t_start, const int &progress, const int &img_pixel_cnt) {
+void printProgress(const std::chrono::time_point<std::chrono::high_resolution_clock> &t_start, const int &progress, const int &img_pixel_cnt) {
     auto t_intermediate = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(t_intermediate - t_start).count();
     double durInS = duration / 1000;
